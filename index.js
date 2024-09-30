@@ -11,6 +11,7 @@ import cookieParser from "cookie-parser";
 import axios from "axios";
 
 import authRouter from "./Router/authRouter.js"
+import lockoutRouter from "./Router/lockoutRouter.js"
 
 configDotenv({path : "config/config.env"})
 const app = express() ;
@@ -42,6 +43,8 @@ if(process.env.NODE_ENV == "development"){
 }  
 
 app.use("/api/auth" ,authRouter)
+app.use("/api/lockout" ,lockoutRouter)
+
 //global error Middleware 
 app.use(globalError);
 
