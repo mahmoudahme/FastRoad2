@@ -1,5 +1,5 @@
 import express from "express";
-import { CreateFuelDelivery, getAllFuelDelivery, getOneFuelDelivery } from "../Controller/fuelDeliverycontroller.js";
+import { CreateFuelDelivery, getAllFuelDelivery, getOneFuelDelivery } from "../Controller/fuelDeliveryController.js";
 
 const router = express.Router();
 
