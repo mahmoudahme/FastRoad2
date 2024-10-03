@@ -13,7 +13,9 @@ import authRouter from "./Router/authRouter.js"
 import lockoutRouter from "./Router/lockoutRouter.js"
 import fuelDeliveryRouter from "./Router/fuelDeliveryRouter.js"
 import tireRouter from "./Router/tireRouter.js"
-import carRouter from "./Router/carRouter.js"
+import carRouter from "./Router/carRouter.js";
+import cars from "./Router/cars.js"
+
 configDotenv({path : "config/config.env"})
 const app = express() ;
 DBConnection();
@@ -50,6 +52,7 @@ app.use("/api/lockout" ,lockoutRouter)
 app.use("/api/fuel" ,fuelDeliveryRouter)
 app.use("/api/tire" ,tireRouter)
 app.use("/api/car" ,carRouter)
+app.use("/api/models" ,cars )
 
 //global error Middleware  
 app.use(globalError); 
