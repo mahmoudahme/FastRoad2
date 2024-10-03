@@ -1,6 +1,7 @@
 import Car from "../Model/Car.js";
 import { verifyToken } from "../Utils/verifyToken.js";
 import { ApiError } from "../Utils/apiError.js";
+import fs from "fs"
 
 export const CreateCar = async (req, res, next) => {
   try {
@@ -54,3 +55,23 @@ export const getOneCar = async (req, res, next) => {
     return next(new ApiError("Error in Creation", 400));
   }
 };
+export const getDataFromJson = async(req , res , next) => {
+  try {
+    verifyToken(req, res, async () => {
+      if (req.user) {
+        fs.readFile('Car.json', 'utf8', (err, data) => {
+          if (err) {
+              console.error('Error reading file:', err);
+              return;
+          }
+          const jsonData = JSON.parse(data);
+          res.status(200).json({ Car: jsonData });
+      });
+      } else {
+        return next(new ApiError("You are not authenticated!", 401));
+      }
+    });
+  } catch (error) {
+    return next(new ApiError("Error in Creation", 400));
+  }
+}
