@@ -65,7 +65,23 @@ export const getDataFromJson = async(req , res , next) => {
               return;
           }
           const jsonData = JSON.parse(data);
-          res.status(200).json({ Car: jsonData });
+          // res.status(200).json({});
+          const groupedCars = jsonData.VehicleModelYear.reduce((acc, car) => {
+            // إذا كانت make غير موجودة في النتيجة، نضيف make جديد مع مصفوفة فارغة للـ models
+            if (!acc[car.make]) {
+              acc[car.make] = {
+                make: car.make,
+                models: []
+              };
+            }
+            // إضافة الـ model إلى مصفوفة models الخاصة بالـ make
+            acc[car.make].models.push(car.model);
+            return acc;
+          }, {});
+          
+          // تحويل الكائن النهائي إلى مصفوفة
+          const result = Object.values(groupedCars); 
+          res.status(200).json({ Car: result });
       });
       } else {
         return next(new ApiError("You are not authenticated!", 401));
