@@ -22,19 +22,18 @@ export const CreateLockOut = async (req, res, next) => {
         if (inPutText == undefined) {
           const url = `https://us1.locationiq.com/v1/reverse.php?key=${apikey}&lat=${latitude}&lon=${longitude}&format=json`;
           const response = await axios.get(url);
-          console.log(response.data)
-          // const newLockOut = new LockOut({
-          //   KeyInCar: KeyInCar,
-          //   timeOfHelp: timeOfHelp,
-          //   date: date,
-          //   Location: response.data.display_name,
-          //   year: year,
-          //   model: model,
-          //   color: color,
-          //   UserId: req.user.id,
-          // });
-          // await newLockOut.save();
-          // res.status(200).json({ message: "Your LockOut Request Created" });
+          const newLockOut = new LockOut({
+            KeyInCar: KeyInCar,
+            timeOfHelp: timeOfHelp,
+            date: date,
+            Location: response.data.display_name,
+            year: year,
+            model: model,
+            color: color,
+            UserId: req.user.id,
+          });
+          await newLockOut.save();
+          res.status(200).json({ message: "Your LockOut Request Created" });
         }else {
           const newLockOut = new LockOut({
             KeyInCar: KeyInCar,
