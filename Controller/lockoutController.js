@@ -21,18 +21,19 @@ export const CreateLockOut = async (req, res, next) => {
         if (inPutText == undefined) {
           const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&addressdetails=1`;
           const response = await axios.get(url);
-          const newLockOut = new LockOut({
-            KeyInCar: KeyInCar,
-            timeOfHelp: timeOfHelp,
-            date: date,
-            Location: response.data.display_name,
-            year: year,
-            model: model,
-            color: color,
-            UserId: req.user.id,
-          });
-          await newLockOut.save();
-          res.status(200).json({ message: "Your LockOut Request Created" });
+          console.log(response.data)
+          // const newLockOut = new LockOut({
+          //   KeyInCar: KeyInCar,
+          //   timeOfHelp: timeOfHelp,
+          //   date: date,
+          //   Location: response.data.display_name,
+          //   year: year,
+          //   model: model,
+          //   color: color,
+          //   UserId: req.user.id,
+          // });
+          // await newLockOut.save();
+          // res.status(200).json({ message: "Your LockOut Request Created" });
         }else {
           const newLockOut = new LockOut({
             KeyInCar: KeyInCar,
