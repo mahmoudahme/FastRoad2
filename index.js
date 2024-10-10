@@ -16,7 +16,7 @@ import tireRouter from "./Router/tireRouter.js"
 import carRouter from "./Router/carRouter.js";
 import cars from "./Router/cars.js"
 
-configDotenv({path : "config/config.env"})
+configDotenv({path : "Config/config.env"})
 const app = express() ;
 DBConnection();
 app.use(cors());
