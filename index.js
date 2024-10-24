@@ -15,6 +15,10 @@ import fuelDeliveryRouter from "./Router/fuelDeliveryRouter.js"
 import tireRouter from "./Router/tireRouter.js"
 import carRouter from "./Router/carRouter.js";
 import cars from "./Router/cars.js"
+import carSellRouter from "./Router/carSellRouter.js"
+import historyRouter from "./Router/historyRouter.js"
+import jumpStartRouter from "./Router/jumpStartRouter.js"
+import towRouter from "./Router/towRouter.js"
 
 configDotenv({path : "Config/config.env"})
 const app = express() ;
@@ -53,7 +57,10 @@ app.use("/api/fuel" ,fuelDeliveryRouter)
 app.use("/api/tire" ,tireRouter)
 app.use("/api/car" ,carRouter)
 app.use("/api/models" ,cars )
-
+app.use("/api/sellcar" ,carSellRouter )
+app.use("/api/history" ,historyRouter )
+app.use("/api/jumpstart" ,jumpStartRouter)
+app.use("/api/tow" ,towRouter)
 //global error Middleware  
 app.use(globalError); 
 
