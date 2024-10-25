@@ -5,6 +5,7 @@ import axios from "axios";
 
 export const CreateTire = async (req, res, next) => {
   try {
+    const apikey = "pk.269e5f03cafbf57f6dd5b92d3a8096eb"
     verifyToken(req, res, async () => {
       if (req.user) {
         const {
@@ -20,7 +21,7 @@ export const CreateTire = async (req, res, next) => {
         } = req.body;
         if (Spire) {
           if (inPutText == undefined) {
-            const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&addressdetails=1`;
+            const url = `https://us1.locationiq.com/v1/reverse.php?key=${apikey}&lat=${latitude}&lon=${longitude}&format=json`;
             const response = await axios.get(url);
             const newTire = new Tire({
               Spire: Spire,
