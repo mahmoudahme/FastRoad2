@@ -13,6 +13,10 @@ const lockOutSchema = new mongoose.Schema(
     date: {
       type: String,
     },
+    onTheRoad : {
+      type : String ,
+      required : true
+    },
     Location: {
       type: String,
       required: true,
