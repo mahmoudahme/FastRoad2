@@ -41,7 +41,11 @@ const tireSchema = new mongoose.Schema(
       type:mongoose.Types.ObjectId ,
       required : true,
       ref : "User"
-    }
+    },
+    paymentMethod :  {
+      type : String ,
+      required : true
+    },
   },
   { timestamps: true }
 );
