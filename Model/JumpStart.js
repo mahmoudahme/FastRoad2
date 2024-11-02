@@ -38,7 +38,7 @@ const jumpStartSchema = new mongoose.Schema(
       required: true,
       ref: "User",
     },
-paymentMethod :  {
+    paymentMethod :  {
       type : String ,
       required : true
   },
