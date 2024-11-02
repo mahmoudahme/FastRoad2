@@ -42,6 +42,10 @@ const TowSchema = new mongoose.Schema(
       required: true,
       ref: "User",
     },
+    paymentMethod :  {
+      type : String ,
+      required : true
+    },
   },
   { timestamps: true }
 );
