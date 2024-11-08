@@ -30,7 +30,7 @@ export const verifyOTP = async (req, res, next) => {
     }
   } catch (error) {
     console.error("Error verifying OTP:", error);
-    res.status(500).json({ success: false, error: "Internal server error" });
+    res.status(400).json({ success: false, error: "Internal server error" });
   }
 };
 
@@ -78,7 +78,7 @@ export const register = async (req, res, next) => {
       }
     }
   } catch (error) {
-    return next(new ApiError(`System Error ${error}`, 404));
+    return next(new ApiError(`System Error ${error}`, 400));
   }
 };
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -94,7 +94,7 @@ export const login = async (req, res, next) => {
           user.password
         );
         if (!isPasswordCorrect) {
-          return next(new ApiError("password isn't correct", 422));
+          return next(new ApiError("password isn't correct", 401));
         }
 
         const token = JsonWebToken.sign(
@@ -111,11 +111,11 @@ export const login = async (req, res, next) => {
           .status(200)
           .json({ details: { ...otherDetails }, isAdmin, token: token });
       }else{
-        return next(new ApiError("You Should Active your account", 300));
+        return next(new ApiError("You Should Active your account", 403));
       }
     }
   } catch (error) {
-    return next(new ApiError(`System Error ${error}`, 404));
+    return next(new ApiError(`System Error ${error}`, 400));
   }
 };
 
